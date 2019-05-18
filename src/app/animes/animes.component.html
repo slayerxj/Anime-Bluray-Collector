@@ -1,5 +1,8 @@
-<ul class="animes">
-  <li *ngFor="let anime of animes">
-    <span class="badge">{{anime.rank}}</span>{{anime.name}}
-  </li>
-</ul>
+<table class="animes">
+  <tr *ngFor="let anime of animes">
+    <td>{{anime.publishTime | date}}</td>
+    <td><a [href]="anime.url">{{anime.name}}</a></td>
+    <td [innerHTML] = "anime.generalRanking | rank"></td>
+    <td><a [href]="anime.magnetLink">DOWNLOAD</a></td>
+  </tr>
+</table>

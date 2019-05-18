@@ -4,10 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AnimesComponent } from './animes/animes.component';
 
+import { RankPipe } from './rank.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
-    AnimesComponent
+    AnimesComponent,
+    RankPipe
   ],
   imports: [
     BrowserModule
