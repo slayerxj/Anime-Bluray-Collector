@@ -1,8 +1,44 @@
-<table class="animes">
+<!-- <table class="animes">
   <tr *ngFor="let anime of animes">
     <td>{{anime.publishTime | date}}</td>
     <td><a [href]="anime.url">{{anime.name}}</a></td>
     <td [innerHTML] = "anime.generalRanking | rank"></td>
     <td><a [href]="anime.magnetLink">DOWNLOAD</a></td>
   </tr>
+</table> -->
+<mat-slide-toggle [(ngModel)]="isNew" (change)="changed()">Only New</mat-slide-toggle>
+<mat-slide-toggle [(ngModel)]="isComplete" (change)="changed()">Only Complete</mat-slide-toggle>
+<!-- <mat-slide-toggle [(ngModel)]="isRecent" (change)="changed()">Only Recent 7 days</mat-slide-toggle> -->
+<table mat-table [dataSource]="animes" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="time">
+    <th mat-header-cell *matHeaderCellDef> Time </th>
+    <td mat-cell *matCellDef="let anime"> {{anime.publishTime | date}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let anime"><a [href]="anime.url">{{anime.name}}</a></td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Weight </th>
+    <td mat-cell *matCellDef="let anime" [innerHTML] = "anime.generalRanking | rank"></td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="download">
+    <th mat-header-cell *matHeaderCellDef> Download </th>
+    <td mat-cell *matCellDef="let anime"><a [href]="anime.magnetLink">link</a></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
